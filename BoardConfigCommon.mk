@@ -1,10 +1,9 @@
-#COMMON_GLOBAL_CFLAGS += -DREVERSE_FFC_MIRROR_LOGIC -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_EGL_PIXEL_FORMAT_YV12 -DMISSING_GRALLOC_BUFFERS -DEGL_ALWAYS_ASYNC
-
 # inherit from the proprietary version
 -include vendor/lge/star-common/BoardConfigVendor.mk
 
 TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := tegra
+TARGET_ARCH := arm
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
@@ -24,6 +23,9 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/star-common/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/lge/star-common/bluetooth/vnd_star.txt
+
 
 TARGET_OVERLAY_ALWAYS_DETERMINES_FORMAT := true
 
@@ -37,12 +39,14 @@ WIFI_DRIVER_FW_PATH_AP		:= "/system/etc/wl/rtecdc-apsta.bin"
 WIFI_DRIVER_MODULE_NAME         := "wireless"
 WIFI_DRIVER_MODULE_PATH         := "/system/lib/modules/wireless.ko"
 WIFI_DRIVER_MODULE_ARG          := "firmware_path=/system/etc/wl/rtecdc.bin nvram_path=/etc/wl/nvram.txt config_path=/data/misc/wifi/config"
-WPA_SUPPLICANT_VERSION          := VER_0_6_X
+WPA_SUPPLICANT_VERSION          := VER_0_8_X
 #BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_wext
 #BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
 WIFI_DRIVER_HAS_LGE_SOFTAP      := true
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 BOARD_WEXT_NO_COMBO_SCAN       := true
+WIFI_DRIVER_FW_PATH_PARAM := "/dev/null"
+BOARD_RIL_CLASS := ../../../device/lge/star-common/ril/telephony/java/com/android/internal/telephony/LGEInfineon.java
 
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/star-common/vibrator.c
 
